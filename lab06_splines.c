@@ -37,13 +37,38 @@ int clickandsave(double x[], double y[])
   return numpoints;
 }
 
+void print_system(double u[max_n][max_n], double v[max_n], int n){
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      printf("%12.8lf", u[i][j]);
+    }
+    printf(" | %12.8lf", v[i]);
+    printf("\n");
+  }
+}
 
+void create_system(double u[][], double v[], double x[], double y[], int n){
+
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      
+    }
+  }
+
+}
 
 int main()
 {
 
-  int n;
-  double x[max_n], y[max_n];
+  int n = 8;
+  // double x[max_n], y[max_n];
+
+  double x[8] = {86, 177, 249, 311, 381, 416, 455, 551};
+  double y[8] = {181, 211, 315, 460, 459, 311, 195, 155};
+  double u[max_n][max_n], v[max_n];
+  create_system(u, v, x, y, n);
+  print_system(u, v, n);
+
   G_init_graphics(600, 600);
   G_rgb(0, 0, 0);
   G_clear();
