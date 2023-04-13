@@ -37,12 +37,6 @@ int clickandsave(double x[], double y[])
   return numpoints;
 }
 
-void get_group_of_four_points(double input_points[4][2], double x[max_n], double y[max_n], int i, int n){
-  for(int j = 0; j < 4; j++){
-    input_points[j][0] = x[(i + j) % n];
-    input_points[j][1] = y[(i + j) % n];
-  }
-}
 
 
 int main()
