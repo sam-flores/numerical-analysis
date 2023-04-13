@@ -219,10 +219,10 @@ void get_point_from_cubic_spline(double p[2], double input_points[4][2],
       p[1] += evaluate_polynomial(v[i], 3, t)*input_points[i][1];
     }
 }
-void get_group_of_four_points(double input_points[4][2], double x[max_n], double y[max_n], int i){
+void get_group_of_four_points(double input_points[4][2], double x[max_n], double y[max_n], int i, int n){
   for(int j = 0; j < 4; j++){
-    input_points[j][0] = x[i + j];
-    input_points[j][1] = y[i + j];
+    input_points[j][0] = x[(i + j) % n];
+    input_points[j][1] = y[(i + j) % n];
   }
 }
 
@@ -230,10 +230,10 @@ void draw_cubic_spline(double v[4][4], double x[max_n], double y[max_n], int n)
 {
 
   double p[2], input_points[4][2];
-  double delta = .01;
-  for (int i = 0; i < n - 1; i++)
+  double delta = .001;
+  for (int i = 0; i < n; i++)
   {
-    get_group_of_four_points(input_points, x, y, i);
+    get_group_of_four_points(input_points, x, y, i, n);
     for (double t = 0; t < 1; t += delta)
     {
       get_point_from_cubic_spline(p, input_points, v, t);
