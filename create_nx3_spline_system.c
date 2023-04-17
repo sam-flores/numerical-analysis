@@ -63,13 +63,13 @@ void print_nx3_system(double lower[max_n],
     for (int j = 0; j < n; j++)
     {
       if (j == i - 1)
-        printf("%10.2lf", lower[j]);
+        printf("%10.2E", lower[j]);
       else if (j == i)
-        printf("%10.2lf", middle[j]);
+        printf("%10.2E", middle[j]);
       else if (j == i + 1)
-        printf("%10.2lf", upper[j]);
+        printf("%10.2E", upper[j]);
       else
-        printf("%10.2d", zero);
+        printf("%10.1d", zero);
     }
     printf(" | %20.16lf", v[i]);
     printf("\n");

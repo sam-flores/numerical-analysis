@@ -6,6 +6,7 @@
 
 #include "create_nxn_spline_system.c"
 #include "create_nx3_spline_system.c"
+#include "solve_nx3_spline_system.c"
 
 int clickandsave(double x[], double y[])
 {
@@ -52,11 +53,14 @@ void solve_nxn_system(double x[], double y[], int n){
 }
 
 void solve_nx3_system(double x[], double y[], int n){
-  double upper[max_n], middle[max_n], lower[max_n];
+  double lower[max_n], middle[max_n], upper[max_n];
   double v[max_n];
   n *= 2;
   n -= 2;
   create_nx3_system(lower, middle, upper, v, x, y, n);
+  nx3_eliminate_lower_diagonal(lower, middle, upper, v, n);
+  nx3_eliminate_upper_diagonal(lower, middle, upper, v, n);
+  nx3_eliminate_middle_diagonal(lower, middle, upper, v, n);
   print_nx3_system(lower, middle, upper, v, n);
 }
 
