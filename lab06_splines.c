@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "FPToolkit.c"
-#define max_n 100
+#define max_n 100000
 
 #include "create_nxn_spline_system.c"
 #include "create_nx3_spline_system.c"
@@ -41,6 +41,23 @@ int clickandsave(double x[], double y[])
   return numpoints;
 }
 
+int gen_points(double x[], double y[], int width, int height)
+{
+  int numpoints = 50;
+  G_rgb(0.5, 0.5, 0.5);
+  double max_delta = 2*width / numpoints;
+  x[0] = 0;
+  y[0] = height/2 + (drand48()-.5) * (height/2);
+  for(int i = 1; i < numpoints; i++){
+    x[i] = x[i - 1] +max_delta;
+    y[i] = 100 + drand48()*(height - 100);
+    G_fill_rectangle(x[i] - 2, y[i] - 2, 4, 4);
+  }
+
+  return numpoints;
+}
+
+
 void solve_nxn_system(double v[], double x[], double y[], int n)
 {
   double u[max_n][max_n];
@@ -55,9 +72,9 @@ void solve_nxn_system(double v[], double x[], double y[], int n)
 
 void solve_nx3_system(double v[], double x[], double y[], int n)
 {
-  double lower[max_n], middle[max_n], upper[max_n];
+  double lower[2*max_n], middle[2*max_n], upper[2*max_n];
+  n -= 1;
   n *= 2;
-  n -= 2;
   create_nx3_system(lower, middle, upper, v, x, y, n);
   nx3_eliminate_lower_diagonal(lower, middle, upper, v, n);
   nx3_eliminate_upper_diagonal(lower, middle, upper, v, n);
@@ -87,15 +104,16 @@ void draw_spline(double x[], double y[], double v[], int n)
 int main()
 {
 
-  int n = 8;
-  // double x[max_n], y[max_n];
-  double v[max_n];
-
-  double x[8] = {86, 87, 88, 90, 102, 110, 200, 551};
-  double y[8] = {181, 211, 315, 460, 459, 311, 195, 155};
-  G_init_graphics(600, 600);
+  int n;
+  double x[max_n], y[max_n];
+  double v[2*max_n];
+  // double x[8] = {86, 87, 88, 90, 102, 110, 200, 551};
+  // double y[8] = {181, 211, 315, 460, 459, 311, 195, 155};
+  int width = 600, height = 600;
+  G_init_graphics(width, height);
   G_rgb(0, 0, 0);
   G_clear();
+  n = gen_points(x, y, width, height);
   // n = clickandsave(x, y);
   
   // solve_nxn_system(v, x, y, n);
