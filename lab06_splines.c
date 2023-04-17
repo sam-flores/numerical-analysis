@@ -56,7 +56,7 @@ void solve_nx3_system(double x[], double y[], int n){
   double v[max_n];
   n *= 2;
   n -= 2;
-  create_nx3_system(upper, middle, lower, v, x, y, n);
+  create_nx3_system(lower, middle, upper, v, x, y, n);
   print_nx3_system(lower, middle, upper, v, n);
 }
 
@@ -68,7 +68,7 @@ int main()
 
   double x[8] = {86, 177, 249, 311, 381, 416, 455, 551};
   double y[8] = {181, 211, 315, 460, 459, 311, 195, 155};
-  solve_nxn_system(x, y, n);
+  // solve_nxn_system(x, y, n);
   solve_nx3_system(x, y, n);
 
   // G_init_graphics(600, 600);
