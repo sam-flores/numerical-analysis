@@ -72,12 +72,12 @@ int main()
 
   double x[8] = {86, 177, 249, 311, 381, 416, 455, 551};
   double y[8] = {181, 211, 315, 460, 459, 311, 195, 155};
-  // solve_nxn_system(x, y, n);
-  solve_nx3_system(x, y, n);
+  solve_nxn_system(x, y, n);
+  // solve_nx3_system(x, y, n);
 
-  // G_init_graphics(600, 600);
-  // G_rgb(0, 0, 0);
-  // G_clear();
+  G_init_graphics(600, 600);
+  G_rgb(0, 0, 0);
+  G_clear();
   // n = clickandsave(x, y);
-  // G_wait_key();
+  G_wait_key();
 }
