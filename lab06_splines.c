@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "FPToolkit.c"
-#define max_n 100000
+#define max_n 10000
 
 #include "create_nxn_spline_system.c"
 #include "create_nx3_spline_system.c"
@@ -49,14 +49,13 @@ int gen_points(double x[], double y[], int width, int height)
   x[0] = 0;
   y[0] = height/2 + (drand48()-.5) * (height/2);
   for(int i = 1; i < numpoints; i++){
-    x[i] = x[i - 1] +max_delta;
-    y[i] = 100 + drand48()*(height - 100);
+    x[i] = x[i - 1] + max_delta;
+    y[i] = y[i - 1] + (drand48() - .5)*100;
     G_fill_rectangle(x[i] - 2, y[i] - 2, 4, 4);
   }
 
   return numpoints;
 }
-
 
 void solve_nxn_system(double v[], double x[], double y[], int n)
 {
@@ -76,6 +75,7 @@ void solve_nx3_system(double v[], double x[], double y[], int n)
   n -= 1;
   n *= 2;
   create_nx3_system(lower, middle, upper, v, x, y, n);
+  normalize_matrix(lower, middle, upper, v, n);
   nx3_eliminate_lower_diagonal(lower, middle, upper, v, n);
   nx3_eliminate_upper_diagonal(lower, middle, upper, v, n);
   nx3_eliminate_middle_diagonal(lower, middle, upper, v, n);
@@ -107,12 +107,12 @@ int main()
   int n;
   double x[max_n], y[max_n];
   double v[2*max_n];
-  // double x[8] = {86, 87, 88, 90, 102, 110, 200, 551};
-  // double y[8] = {181, 211, 315, 460, 459, 311, 195, 155};
+
   int width = 600, height = 600;
   G_init_graphics(width, height);
   G_rgb(0, 0, 0);
   G_clear();
+
   n = gen_points(x, y, width, height);
   // n = clickandsave(x, y);
   

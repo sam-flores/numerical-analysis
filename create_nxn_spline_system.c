@@ -86,7 +86,7 @@ void print_system(double u[max_n][max_n], double v[max_n], int n){
   }
 }
 
-void load_diagonal(double u[max_n][max_n], double x[8], int n){
+void load_diagonal(double u[max_n][max_n], double x[max_n], int n){
   u[0][0] = 1;
   for(int i = 1; i < n; i++){
     u[2*i][2*i] = -(x[i + 1] - x[i - 1]);
@@ -104,7 +104,7 @@ void load_zeroes(double u[max_n][max_n], double v[max_n], int n){
   }
 }
 
-void load_upper_diagonal(double u[max_n][max_n], double x[8], int n){
+void load_upper_diagonal(double u[max_n][max_n], double x[max_n], int n){
   u[0][1] = -(x[1] - x[0]);
   for(int i = 1; i < n; i++){
     u[2*i - 1][2*i - 1 + 1] = (x[i + 1] - x[i]);
@@ -112,7 +112,7 @@ void load_upper_diagonal(double u[max_n][max_n], double x[8], int n){
   }
 }
 
-void load_lower_diagonal(double u[max_n][max_n], double x[8], int n){
+void load_lower_diagonal(double u[max_n][max_n], double x[max_n], int n){
   u[1][0] = (x[1] - x[0]);
   for(int i = 1; i < n; i++){
     u[2*i - 1 + 1 - 1][2*i - 1 - 1] = (x[i] - x[i - 1]);
@@ -121,7 +121,7 @@ void load_lower_diagonal(double u[max_n][max_n], double x[8], int n){
     u[n - 1][n - 1 - 1] = 1;
 }
 
-void load_v(double v[max_n], double x[8], double y[8], int n){
+void load_v(double v[max_n], double x[max_n], double y[max_n], int n){
   v[0] = 0;
   for(int i = 1; i < n - 1; i++){
     v[2*i - 1] = (y[i + 1] - y[i])/(x[i + 1] - x[i]) - (y[i] - y[i - 1])/(x[i] - x[i - 1]);
@@ -130,7 +130,7 @@ void load_v(double v[max_n], double x[8], double y[8], int n){
   v[n - 1] = 0;
 }
 
-void create_system(double u[max_n][max_n], double v[max_n], double x[8], double y[8], int n){
+void create_system(double u[max_n][max_n], double v[max_n], double x[max_n], double y[max_n], int n){
 
   load_zeroes(u, v, n);
   load_diagonal(u, x, n);
