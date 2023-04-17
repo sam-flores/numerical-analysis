@@ -88,15 +88,15 @@ int main()
 {
 
   int n = 8;
-  double x[max_n], y[max_n];
+  // double x[max_n], y[max_n];
   double v[max_n];
 
-  // double x[8] = {86, 177, 249, 311, 381, 416, 455, 551};
-  // double y[8] = {181, 211, 315, 460, 459, 311, 195, 155};
+  double x[8] = {86, 177, 249, 311, 381, 416, 455, 551};
+  double y[8] = {181, 211, 315, 460, 459, 311, 195, 155};
   G_init_graphics(600, 600);
   G_rgb(0, 0, 0);
   G_clear();
-  n = clickandsave(x, y);
+  // n = clickandsave(x, y);
   
   // solve_nxn_system(v, x, y, n);
   // G_rgb(0, 1, 0);
