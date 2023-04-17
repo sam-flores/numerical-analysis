@@ -43,7 +43,7 @@ int clickandsave(double x[], double y[])
 
 int gen_points(double x[], double y[], int width, int height)
 {
-  int numpoints = 50;
+  int numpoints = 250;
   G_rgb(0.5, 0.5, 0.5);
   double max_delta = 2*width / numpoints;
   x[0] = 0;
