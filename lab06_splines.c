@@ -91,7 +91,7 @@ int main()
   // double x[max_n], y[max_n];
   double v[max_n];
 
-  double x[8] = {86, 177, 249, 311, 381, 416, 455, 551};
+  double x[8] = {86, 87, 88, 90, 102, 110, 200, 551};
   double y[8] = {181, 211, 315, 460, 459, 311, 195, 155};
   G_init_graphics(600, 600);
   G_rgb(0, 0, 0);
