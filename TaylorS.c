@@ -141,4 +141,68 @@ int Mul_T (double r[], double u[], double v[])
 
 }
 
+int Div_T (double r[], double u[], double v[])
+{
+  int n,k ;
+  double sum = 0;
+  double p[1000] ;
 
+  for ( n = 0 ; n <= Tdegree ; n++ ) {
+
+     sum = u[n] ;
+     for ( k = 0 ; k <= n - 1; k++ ) {
+        sum -= p[k] * v[n-k] ;
+     }
+     sum /= v[0];
+
+     p[n] = sum ;
+  }
+  
+  copy_T (r,p) ;
+  return 1 ;
+
+}
+
+int exp_T (double r[], double u[])
+{
+  int n,k ;
+  double sum = 0;
+  double p[1000] ;
+
+  p[0] = exp(u[0]);
+  for ( n = 1 ; n <= Tdegree ; n++ ) {
+
+     sum = 0;
+     for ( k = 1 ; k <= n; k++ ) {
+        sum += k * p[n - k]*u[k] ;
+     }
+     sum /= n;
+
+     p[n] = sum ;
+  }
+  
+  copy_T (r,p) ;
+  return 1 ;
+
+}
+
+int ln_T (double r[], double u[]){
+  int n,k ;
+  double sum = 0;
+  double p[1000] ;
+
+  p[0] = log(u[0]);
+  for ( n = 1 ; n <= Tdegree ; n++ ) {
+
+     sum = 0;
+     for ( k = 1 ; k <= n; k++ ) {
+        sum += k * u[n - k]*r[k] ;
+     }
+     sum = (n*u[n] - sum) / (n*u[0]);
+
+     p[n] = sum ;
+  }
+  
+  copy_T (r,p) ;
+  return 1 ;
+}
