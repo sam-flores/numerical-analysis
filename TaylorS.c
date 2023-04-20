@@ -195,8 +195,8 @@ int ln_T (double r[], double u[]){
   for ( n = 1 ; n <= Tdegree ; n++ ) {
 
      sum = 0;
-     for ( k = 1 ; k <= n; k++ ) {
-        sum += k * u[n - k]*r[k] ;
+     for ( k = 1 ; k <= n - 1; k++ ) {
+        sum += k * u[n - k]*p[k] ;
      }
      sum = (n*u[n] - sum) / (n*u[0]);
 
