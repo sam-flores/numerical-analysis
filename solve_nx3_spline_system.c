@@ -45,10 +45,8 @@ void normalize_matrix(double lower[], double middle[], double upper[],
         div_row(0, lower, middle, upper, v, n, fabs(middle[n - 1]));
 }
 
-void nx3_eliminate_lower_diagonal(double lower[], 
-                                    double middle[], 
-                                    double upper[],
-                                    double v[], int n)
+void nx3_eliminate_lower_diagonal(double lower[], double middle[], double upper[],
+                                  double v[], int n)
 {
     int i;
     for (i = 0; i < n - 2; i++)

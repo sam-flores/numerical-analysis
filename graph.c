@@ -6,7 +6,7 @@
 #include "create_nx3_spline_system.c"
 #include "solve_nx3_spline_system.c"
 
-#define max_n 10000
+#define max_n 100
 
 void solve_nx3_system(double v[], double x[], double y[], int n)
 {
@@ -41,8 +41,8 @@ void draw_spline(double x[], double y[], double v[], int n)
 }
 
 double f(double x, double t){
-	double fx = 17  +  (14 - 8*cos(x) + cos(2*x)) * cos(2*x)   - 24*cos(x);
-	fx /= (x*exp(x) - x) * (1 + 2*x*x - cos(2*x) - 4*x*sin(x));
+	double fx = 17  +  (14 - 8*cos(t) + cos(2*x)) * cos(2*x)   - 24*cos(x);
+	fx /= (x*exp(x) - x) * (1 + 2*x*x - cos(2*t) - 4*x*sin(x));
 	return fx;
 }
 
@@ -57,8 +57,7 @@ void draw_axes(double width, double height, double a, double b){
 
 int graph(double (*f)(double x, double t), double a, double b, 
 	double width, double height, double t,
-	double xp[], double yp[]){
-	int n = 10;
+	double xp[], double yp[], int n){
 	double x = a;
 	double delta = (b - a) / (double)n;
 	double normalize = width/(b - a);
@@ -84,10 +83,10 @@ int main(){
 	int q = 0;
 	double t = 0;
 	double x[max_n], y[max_n], v[2*max_n];
-	int n;
+	int n = 11;
 	while(q != 'q'){	
 		draw_axes(width, height, a, b);
-		n = graph(f, a, b, width, height, t, x, y);
+		graph(f, a, b, width, height, t, x, y, n);
 		solve_nx3_system(v, x, y, n);
   	G_rgb(0, 1, 1);
   	draw_spline(x, y, v, n);
@@ -110,6 +109,7 @@ int main(){
 		G_rgb(0, 0, 0);
 		G_clear();
 		t+=.1;
+
 	}
 
 }
