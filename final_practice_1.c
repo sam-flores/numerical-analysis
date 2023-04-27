@@ -11,16 +11,17 @@ double f(double x){
 double lim(double (*f)(double x), double a, int n){
 	double delta = 10;
 	for(int i = 1; i <= n; i++){
-		printf("value of f is: %lf\n", f(a + delta));
+		printf("f(%lf + %lf) = %lf\n", a, delta, f(a + delta));
 		delta /= 2;
 	}
-	return f(x + delta);
+	return f(a + delta);
 }
 
 int main(){
 
-	int n = 10;
+	int n = 25;
 	double a = 0;
 	printf("\nthe lim of f as x -> %lf is %lf\n\n", a, lim(f, a, n));
+	printf("\nactual f(%lf) = %lf\n\n", a, f(a));
 
 }
