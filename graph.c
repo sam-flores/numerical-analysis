@@ -44,7 +44,7 @@ double f(double x, double t)
 {
 	double fx = 17 + (14 - 8 * cos(x) + cos(2 * x)) * cos(2 * x) - 24 * cos(x);
 	fx /= (x * exp(x) - x) * (1 + 2 * x * x - cos(2 * t) - 4 * x * sin(x));
-	return exp(-x * x);
+	return fx*sin(t);
 }
 
 void draw_axes(double width, double height,
